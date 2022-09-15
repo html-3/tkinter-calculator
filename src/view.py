@@ -23,6 +23,7 @@ class View(Tk):
     sv_ttk.use_light_theme()
 
     self._make_frame()
+    #self.withdraw()
     self._make_entry()
     self._make_buttons()
     self._center_window()
@@ -42,21 +43,18 @@ class View(Tk):
     frm = ttk.Frame(self.frm)
     frm.pack()
 
-    i = 0
+    for i in range(0,5):
+      for j in range(0,4):
 
-    for caption in self.BUTTON_CAPTIONS:
-      if i == 0:
-        line_frm = ttk.Frame(frm)
-        line_frm.pack(fill='x', expand=1)
-        i = self.MAX_COL
+        if j == 3 and i == 4:
+          break
 
-      btn = ttk.Button(line_frm, text=caption, command=lambda button=caption: self.controller.callback(button))
-      btn.pack(side='left', fill='x', expand=1)
+        caption = self.BUTTON_CAPTIONS[4*i+j]
 
-      i -= 1
+        btn = ttk.Button(frm, text=caption, command=lambda button=caption: self.controller.callback(button))
+        btn.grid(column=j, row=i, ipadx=10, sticky='ew', columnspan=2 if caption == '=' else 1)
 
   def _center_window(self):
-    # Does not work properly
 
     self.update()
     w = self.winfo_width()
@@ -66,5 +64,4 @@ class View(Tk):
     y = (self.winfo_screenheight() - h) // 2
 
     self.geometry(f'{w}x{h}+{x}+{y}')
-
-
+    self.resizable(False, False)
