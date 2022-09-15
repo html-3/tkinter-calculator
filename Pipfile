@@ -5,6 +5,7 @@ name = "pypi"
 
 [packages]
 sv-ttk = "*"
+windows-curses = "*"
 
 [dev-packages]
 
