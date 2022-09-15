@@ -16,6 +16,9 @@ class Model:
     elif caption.isdigit():
       self.value += caption
 
+    elif not self.value:
+      pass
+      
     elif caption == '+/-':
       self.value = self.value[1:] if '-' in self.value else '-' + self.value
 
@@ -23,10 +26,7 @@ class Model:
       self.value += caption
 
     elif caption == '%':
-      self.value = eval(f'{self.value}*100')
-
-    elif caption == '=':
-      self.value = self._evaluate()
+      self.value = round(eval(f'{self.value}*100'),6)
 
     elif caption in ['+', '-', '/', '*']:
       if self.value:
@@ -34,9 +34,14 @@ class Model:
         self.operator = caption
         self.value = ''
 
+    elif caption == '=' and self.previous:
+      self.value = self._evaluate()
+
+    self.value = str(self.value)
+
     return self.value
 
   def _evaluate(self):
-    result = round(eval(self.previous + self.operator + self.value),3)
+    result = round(eval(self.previous + self.operator + self.value),6)
     return str(result)
 
