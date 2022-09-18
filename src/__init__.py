@@ -9,6 +9,9 @@ class App(Tk):
     super().__init__()
     
     self.simple = Controller(self)
+    self.scientific = Controller(self)
+
+    self._menu()
     self._config()
     self._center_window()
 
@@ -21,6 +24,7 @@ class App(Tk):
     sv_ttk.use_light_theme()
     self.configure(menu=self.menu_bar)
 
+    self.scientific.view.forget()
 
 
   def _center_window(self):
@@ -34,3 +38,21 @@ class App(Tk):
 
     self.geometry(f'{w}x{h}+{x}+{y}')
     self.resizable(False, False)
+
+  def _change_calculator(self, new : Frame):
+    self.current.forget()
+    self.current = new
+    self.current.pack()
+
+  def _menu(self):
+    self.menu_bar = Menu(self)
+
+    calc_type = Menu(self.menu_bar, tearoff=0)
+
+    calc_type.add_command(label='Simple', command=lambda: self._change_calculator(self.simple.view))
+    calc_type.add_command(label='Scientific', command=lambda: self._change_calculator(self.scientific.view))
+
+    self.menu_bar.add_cascade(label='Type', menu=calc_type)
+
+    self.menu_bar.add_cascade(label='Quit', command=self.destroy)
+
