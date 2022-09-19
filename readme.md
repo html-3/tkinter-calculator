@@ -52,12 +52,12 @@ subgraph App
 	V(View)
 	C(Controller)
 	
-	C--->|Atualiza / \n Callback| V
+	C-.->|Atualiza / \n Callback| V
 	V--->|Requisita|C
 	
 	subgraph Sub[" "]
         C--->|Comanda| M
-        M--->|Responde|C
+        M-.->|Responde|C
 	end
 	
 end
@@ -83,3 +83,7 @@ style Sub opacity:0.0
 [ToyMVC - Gist](https://gist.githubusercontent.com/ajfigueroa/c2af555630d1db3efb5178ece728b017/raw/913d9ec42a7092ca0d4b36f21dc47b6404aefaf9/toymvc_example.py)
 
 [Python Tkinter Grid - Bijay Kumar](https://pythonguides.com/python-tkinter-grid/)
+
+[Swapping between frames - Dr. Andy Wicks (YouTube)](https://www.youtube.com/watch?v=e6ktaqlXaec)
+
+[Adding a menu bar - Dr. Andy Wicks (YouTube)](https://www.youtube.com/watch?v=R8I9LZMPsxA)
