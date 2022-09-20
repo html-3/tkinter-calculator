@@ -12,3 +12,8 @@ class ScientificController:
      result = self.model.calculate(caption)
 
      self.view.display.set(result)
+
+  # NOT WORKING
+  # Widget size and position
+  def dimensions(self):
+    return self.view.winfo_geometry()
