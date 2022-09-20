@@ -1,9 +1,9 @@
 
-from src.simple.model import Model
-from src.simple.view import View
+from src.scientific.model import Model
+from src.scientific.view import View
 
 
-class SimpleController:
+class ScientificController:
   def __init__(self, app) -> None:
     self.model = Model()
     self.view = View(app, self)
